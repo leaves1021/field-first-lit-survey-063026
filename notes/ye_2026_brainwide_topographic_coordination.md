@@ -1,13 +1,14 @@
 # Metadata
 - citekey: ye_2026_brainwide_topographic_coordination
-- title: Brain-wide topographic coordination of traveling waves
-- authors: Ye et al. (extracted text lacks full author list)
+- title: Brain-wide topographic coordination of rotating waves
+- authors: Zhiwen Ye; Alexander E. Ladd; Nancy MacKenzie; Ljuvica Kolich; Anna J. Li; Daniel Birman; Matthew S. Bull; Tanya L. Daigle; Bosiljka Tasic; Hongkui Zeng; Nicholas A. Steinmetz
 - year: 2026
-- venue: Science
-- DOI / PMID / arXiv ID / URL: Not extracted / unclear from current text
-- local PDF path: papers/raw_pdf/ye_2026_brainwide_topographic_coordination.pdf (inferred)
+- venue: Science 392(6804): eadx1369
+- DOI / PMID / arXiv ID / URL: DOI 10.1126/science.adx1369; PMID unclear from local sources; arXiv ID unclear from local sources; URL https://www.science.org/doi/10.1126/science.adx1369
+- local PDF path: papers/raw_pdf/ye_2026_brainwide_topographic_coordination.pdf
 - extracted text path: papers/extracted_text/ye_2026_brainwide_topographic_coordination.md
-- note status: Trial Note
+- note status: Confirmed local metadata; Trial Note for figure-level evidence
+- metadata evidence: references.bib entry ye2026BrainwideTopographicCoordination and PDF page 1 / extracted text page 1
 
 # Inclusion rationale
 - Why this paper is included in the field-first survey: It provides striking experimental evidence for brain-wide distributed computation via macroscopic population dynamics (rotating traveling waves) that are behaviorally relevant.
