@@ -34,23 +34,35 @@ To prevent accidental data loss, the scripts **will not overwrite existing files
 ## Example Commands
 
 ### 1. PubMed Search
+
 ```bash
 python scripts/search_pubmed.py --query "prefrontal cortex working memory" --topic "pfc_wm" --max-results 50
 ```
 
 ### 2. Semantic Scholar Search
+
 ```bash
 python scripts/search_semantic_scholar.py --query "low rank rnn" --topic "lowrank_rnn" --max-results 20
 ```
 
 ### 3. arXiv Search
+
 ```bash
 python scripts/search_arxiv.py --query "neural manifold" --topic "manifolds" --max-results 100 --overwrite
+```
+
+### 4. PDF Text Extraction
+
+Extract text from downloaded PDFs to page-marked Markdown files (requires `pymupdf`):
+
+```bash
+python scripts/extract_pdf_text.py --input-dir papers/raw_pdf/ --output-dir papers/extracted_text
 ```
 
 ## Rate-Limit Assumptions
 
 The scripts implement conservative defaults to ensure compliance with API terms:
+
 - **PubMed**: 0.4 second delay between requests.
 - **Semantic Scholar**: 1.1 second delay between requests.
 - **arXiv**: 3.1 second delay per request to respect their strict 3-second limit.
