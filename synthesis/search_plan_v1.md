@@ -69,13 +69,12 @@
 ## 8. Candidate-to-Confirmed Workflow
 
 1. API search result -> `tables/candidate_papers.csv`
-   - 保存原始 metadata、source、query、retrieved_at 和初筛备注。
 2. human screening -> `tables/confirmed_papers.csv`
-   - 只将通过人工筛选且 metadata 可核验的论文标记为 confirmed。
-3. PDF extraction -> `notes/`
-   - 对核心论文优先使用本地 PDF 和 `papers/extracted_text/`，生成 paper-level notes。
-4. structured extraction -> `tables/paper_matrix.csv` and `tables/figure_evidence_table.csv`
-   - 将论文映射到 field axes、neural object、computation、causal status、modeling opportunity 和 figure-level evidence。
+3. PDF text extraction -> `papers/extracted_text/`
+   - use `scripts/extract_pdf_text.py`
+4. paper note generation -> `notes/`
+   - use extracted PDF text and `templates/paper_note_template.md`
+5. structured extraction -> `tables/paper_matrix.csv` and `tables/figure_evidence_table.csv`
 
 ## 9. First-Pass Limits
 
