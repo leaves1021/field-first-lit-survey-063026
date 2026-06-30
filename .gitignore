@@ -1,0 +1,181 @@
+﻿# ============================================================
+# .gitignore for field-first-lit-survey-063026
+# Literature-review automation workflow
+# ============================================================
+
+
+# ------------------------------------------------------------
+# 1. Python environments, caches, and build artifacts
+# ------------------------------------------------------------
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Python cache / bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Build / packaging artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Test / coverage / type-checking caches
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.pyre/
+.pytype/
+.ruff_cache/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local Python tooling
+.pdm.toml
+__pypackages__/
+
+
+# ------------------------------------------------------------
+# 2. Secrets and local environment files
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+# API keys or credentials should never be committed
+*.key
+*.pem
+*.p12
+*.pfx
+
+
+# ------------------------------------------------------------
+# 3. OS and editor files
+# ------------------------------------------------------------
+
+# Windows / macOS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+.history/
+*.code-workspace
+
+
+# ------------------------------------------------------------
+# 4. Zotero / BibTeX / citation exports
+# ------------------------------------------------------------
+
+# Better BibTeX export may contain local Zotero storage paths.
+# Keep it ignored until the export is cleaned or intentionally tracked.
+references.bib
+
+# Optional cleaned citation export can be tracked if created later:
+# references_clean.bib
+
+
+# ------------------------------------------------------------
+# 5. Papers and copyrighted article files
+# ------------------------------------------------------------
+
+# Original PDFs and supplementary files should not be pushed.
+papers/raw_pdf/*
+papers/supplementary/*
+
+# Keep folder structure
+!papers/raw_pdf/.gitkeep
+!papers/supplementary/.gitkeep
+
+
+# ------------------------------------------------------------
+# 6. Extracted PDF text and generated paper text
+# ------------------------------------------------------------
+
+papers/extracted_text/*
+
+# Keep folder structure
+!papers/extracted_text/.gitkeep
+
+
+# ------------------------------------------------------------
+# 7. Raw API outputs and processed generated data
+# ------------------------------------------------------------
+
+data/raw/*
+data/processed/*
+
+# Keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+
+# ------------------------------------------------------------
+# 8. Logs
+# ------------------------------------------------------------
+
+logs/*
+*.log
+
+# Keep folder structure
+!logs/.gitkeep
+
+
+# ------------------------------------------------------------
+# 9. Generated search-result tables
+# ------------------------------------------------------------
+
+# Ignore automatically generated search result CSVs.
+# Curated tables such as candidate_papers.csv or paper_matrix.csv
+# may still be tracked unless they are explicitly ignored below.
+tables/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_search_*.csv
+tables/[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]_search_*_raw.*
+tables/*.tmp
+
+# Keep folder structure
+!tables/.gitkeep
+
+
+# ------------------------------------------------------------
+# 10. Large archives, databases, and binary dumps
+# ------------------------------------------------------------
+
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.gz
+*.7z
+*.rar
+
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+
+
+# ------------------------------------------------------------
+# 11. Optional local scratch files
+# ------------------------------------------------------------
+
+scratch/
+tmp/
+temp/
