@@ -1,4 +1,4 @@
-﻿# AGENTS.md
+# AGENTS.md
 
 ## Project purpose
 
@@ -70,6 +70,15 @@ Use the existing project structure:
    - `figure_evidence_table.csv`
 4. Do not overwrite existing non-empty files unless explicitly asked.
 5. If a file already exists and changes are needed, summarize the planned changes before editing.
+
+## Language and documentation conventions
+
+1. Use Simplified Chinese by default for user-facing communication, including task summaries, explanations, progress reports, error explanations, and final responses.
+2. Use Simplified Chinese by default for human-facing documentation, including `README.md`, usage notes, workflow explanations, and project-level guides.
+3. Keep standard technical terms in English when they are standard in the field, especially for systems neuroscience, computational neuroscience, machine learning, programming, APIs, and command-line workflows.
+4. Do not translate variable names, function names, class names, filenames, directory names, command-line arguments, package names, API names, environment variables, or code identifiers.
+5. Preserve the original language of direct quotations, paper titles, code snippets, command outputs, error messages, and citation metadata unless the user explicitly asks for translation.
+6. If the user explicitly requests English, bilingual output, or another language, follow the user's request.
 
 ## Literature-survey workflow
 
