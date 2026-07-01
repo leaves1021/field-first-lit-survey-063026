@@ -10,32 +10,38 @@ This run focuses strictly on two field axes:
 
 ## 3. Commands to run later
 *(Note: API keys are loaded from `.env` and must not be committed. Semantic Scholar may still return 429 or 5xx transient errors, and the script now retries them.)*
+*(PowerShell note: assign complex queries to `$q` first to avoid quoting issues.)*
 
 ### Axis 1: population dynamics / neural manifolds
 **PubMed:**
 ```powershell
-python .\scripts\search_pubmed.py --query '("neural population dynamics" OR "population dynamics") AND (neuroscience OR cortex OR "neural manifolds")' --topic "pop_dynamics" --max-results 20
+$q = '(neural population dynamics OR population dynamics) AND (neuroscience OR cortex OR neural manifolds)'
+python .\scripts\search_pubmed.py --query $q --topic pop_dynamics --max-results 20
 ```
 
 **Semantic Scholar:**
 ```powershell
-python .\scripts\search_semantic_scholar.py --query '"neural population dynamics" "neural manifolds" computation dynamics' --topic "pop_dynamics" --max-results 20
+$q = 'neural population dynamics neural manifolds computation dynamics'
+python .\scripts\search_semantic_scholar.py --query $q --topic pop_dynamics --max-results 20
 ```
 
 **arXiv:**
 ```powershell
-python .\scripts\search_arxiv.py --query 'all:"neural population dynamics" AND all:"neural manifolds"' --topic "pop_dynamics" --max-results 20
+$q = 'all:neural population dynamics AND all:neural manifolds'
+python .\scripts\search_arxiv.py --query $q --topic pop_dynamics --max-results 20
 ```
 
 ### Axis 2: brain-wide / distributed computation
 **PubMed:**
 ```powershell
-python .\scripts\search_pubmed.py --query '("brain-wide" OR "whole-brain" OR "distributed computation") AND (neural activity OR neural dynamics OR systems neuroscience)' --topic "brain_wide" --max-results 20
+$q = '(brain-wide OR whole-brain OR distributed computation) AND (neural activity OR neural dynamics OR systems neuroscience)'
+python .\scripts\search_pubmed.py --query $q --topic brain_wide --max-results 20
 ```
 
 **Semantic Scholar:**
 ```powershell
-python .\scripts\search_semantic_scholar.py --query '"brain-wide" "distributed computation" neural dynamics' --topic "brain_wide" --max-results 20
+$q = 'brain-wide distributed computation neural dynamics'
+python .\scripts\search_semantic_scholar.py --query $q --topic brain_wide --max-results 20
 ```
 
 **arXiv:**
