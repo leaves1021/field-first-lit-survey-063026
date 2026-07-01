@@ -87,7 +87,8 @@ def main():
 
             print(
                 f"HTTP {res.status_code} from Semantic Scholar API. "
-                f"Retrying in {wait_time} seconds (attempt {attempt + 1}/{max_retries})..."
+                f"Retrying in {wait_time} seconds "
+                f"(retry {attempt + 1}/{max_retries}; next request attempt {attempt + 2}/{max_retries + 1})..."
             )
             time.sleep(wait_time)
             continue
