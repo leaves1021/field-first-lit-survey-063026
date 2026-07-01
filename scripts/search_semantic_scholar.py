@@ -3,8 +3,23 @@ import os
 import time
 import json
 from datetime import datetime
+from pathlib import Path
 import pandas as pd
 import requests
+
+def load_project_dotenv():
+    project_root = Path(__file__).resolve().parent.parent
+    env_path = project_root / ".env"
+    if not env_path.exists():
+        return
+
+    try:
+        from dotenv import load_dotenv
+    except ImportError:
+        print("python-dotenv is not installed; continuing with system environment variables.")
+        return
+
+    load_dotenv(dotenv_path=env_path, override=False)
 
 def parse_args():
     parser = argparse.ArgumentParser(description="Search Semantic Scholar and save results.")
@@ -16,8 +31,10 @@ def parse_args():
     return parser.parse_args()
 
 def main():
+    load_project_dotenv()
     args = parse_args()
     api_key = args.api_key or os.environ.get("SEMANTIC_SCHOLAR_API_KEY")
+    print(f"SEMANTIC_SCHOLAR_API_KEY loaded: {'yes' if api_key else 'no'}")
     
     date_str = datetime.now().strftime("%Y%m%d")
     raw_path = f"data/raw/{date_str}_search_semanticscholar_{args.topic}_raw.json"
