@@ -126,10 +126,15 @@ def main():
         
         doi = ""
         pmcid = ""
-        for el in article.findall(".//ArticleId"):
-            id_type = el.get("IdType")
-            if id_type == "doi": doi = el.text
-            elif id_type == "pmc": pmcid = el.text
+        # Avoid recursive .//ArticleId to prevent matching ArticleIds in nested reference lists (e.g. ReferenceList)
+        article_id_list = article.find("PubmedData/ArticleIdList")
+        if article_id_list is not None:
+            for el in article_id_list.findall("ArticleId"):
+                id_type = el.get("IdType")
+                if id_type == "doi":
+                    doi = el.text or ""
+                elif id_type == "pmc":
+                    pmcid = el.text or ""
             
         records.append({
             "source": "PubMed",
