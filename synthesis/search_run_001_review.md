@@ -12,7 +12,7 @@
 | PubMed brain_wide | succeeded | 20 | 生成 raw XML 与 per-search CSV；结果漂移严重，包含 machining、seismology、nanofluid、plant disease、drug activity 等非 neuroscience 条目。 |
 | Semantic Scholar brain_wide | succeeded | 20 | 生成 raw JSON 与 per-search CSV；整体最贴近 brain-wide / distributed neuroscience，但仍有少量 ML/clinical/engineering drift。 |
 
-PubMed identifier note: PubMed DOI / PMCID parsing 已修复，本 review 中两张 PubMed title-level review 表的 identifiers 已按重新生成的 CSV 同步。
+PubMed identifier/text extraction note: PubMed DOI / PMCID parsing 与嵌套标签文本截断问题已修复，本 review 中两张 PubMed title-level review 表的标题及 identifiers 已按重新生成的 CSV 同步。
 
 初始失败情况：`logs/semanticscholar_api_error.log` 记录 Semantic Scholar pop_dynamics query 在 2026-07-01 15:15 与 15:35 两次 HTTP 429。  
 成功重试情况：同一 search 后续已生成 `data/raw/20260701_search_semanticscholar_pop_dynamics_raw.json` 与 `tables/20260701_search_semanticscholar_pop_dynamics.csv`，说明失败 search 后来重试成功。  
@@ -128,7 +128,7 @@ Labels 仅基于 title-level 初筛：`likely_relevant`、`borderline` 或 `like
 | 2 | High-rate phase association with travel time neural fields. | 2026 | Nature communications | DOI: 10.1038/s41467-026-74092-y; PMID: 42380143 | likely_exclude | 可能是 seismology/geophysics，`neural fields` 更像 ML 方法词。 |
 | 3 | Whole-brain network dynamics underlying intolerance of uncertainty. | 2026 | NeuroImage | DOI: 10.1016/j.neuroimage.2026.122091; PMID: 42379405 | likely_relevant | 直接是 whole-brain network dynamics。 |
 | 4 | Neural mechanisms of mixed speech and grasp representation in sensorimotor cortices. | 2026 | Journal of neural engineering | DOI: 10.1088/1741-2552/ae847b; PMID: 42379192 | borderline | systems neuroscience 相关，但 title 不明确 brain-wide/distributed。 |
-| 5 | Whole brain fluorescence imaging in  | 2026 | iScience | DOI: 10.1016/j.isci.2026.116389; PMID: 42375524; PMCID: PMC13311176 | borderline | 含 whole-brain imaging，但 title 截断，需要人工核查。 |
+| 5 | Whole brain fluorescence imaging in Drosophila reveals spreading depolarization and its initiation, propagation, and resilience dynamics. | 2026 | iScience | DOI: 10.1016/j.isci.2026.116389; PMID: 42375524; PMCID: PMC13311176 | borderline | 涉及 Drosophila 全脑成像研究传播性去极化（SD）波，符合脑范围动力学，但主要关注病理/生理状态。 |
 | 6 | The functional neurobiology of dispositions towards negative emotions. | 2026 | Nature communications | DOI: 10.1038/s41467-026-74565-0; PMID: 42373635; PMCID: PMC13315715 | borderline | neurobiology 可能相关，但 field-axis link 不清楚。 |
 | 7 | Developing a binary communication protocol between biological neural networks using virtual white matter. | 2026 | Journal of neural engineering | DOI: 10.1088/1741-2552/ae840f; PMID: 42372793 | borderline | biological neural networks 与 communication 相关，但可能是 engineered in vitro。 |
 | 8 | Regional inequities in acute stroke care in Norway: a national benchmark for the "stroke action plan for Europe" implementation. | 2026 | European stroke journal | DOI: 10.1093/esj/aakag072; PMID: 42372228; PMCID: PMC13313314 | likely_exclude | health services/clinical care，不是 neural computation。 |

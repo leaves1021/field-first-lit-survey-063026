@@ -21,6 +21,11 @@ def load_project_dotenv():
 
     load_dotenv(dotenv_path=env_path, override=False)
 
+def element_text(elem):
+    if elem is None:
+        return ""
+    return " ".join("".join(elem.itertext()).split())
+
 def parse_args():
     parser = argparse.ArgumentParser(description="Search PubMed and save results.")
     parser.add_argument("--query", required=True, help="Search query")
@@ -106,12 +111,20 @@ def main():
     
     for article in root.findall(".//PubmedArticle"):
         pmid = article.findtext(".//PMID") or ""
-        title = article.findtext(".//ArticleTitle") or ""
+        
+        # PubMed XML may contain nested formatting or species tags (e.g. <i>, <b>) inside titles or abstracts.
+        # Using element_text (which relies on itertext()) ensures all text fragments are joined and not truncated.
+        title_elem = article.find(".//ArticleTitle")
+        title = element_text(title_elem)
         
         abstract_elem = article.find(".//Abstract")
         abstract = ""
         if abstract_elem is not None:
-            abstract_texts = [text.text for text in abstract_elem.findall(".//AbstractText") if text.text]
+            abstract_texts = [
+                element_text(text_elem)
+                for text_elem in abstract_elem.findall(".//AbstractText")
+                if element_text(text_elem)
+            ]
             abstract = " ".join(abstract_texts)
             
         authors = []
