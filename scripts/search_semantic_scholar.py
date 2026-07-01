@@ -61,37 +61,65 @@ def main():
         headers["x-api-key"] = api_key
         
     print(f"Searching Semantic Scholar for: '{args.query}'...")
-    
+
+    retryable_status_codes = {429, 500, 502, 503, 504}
     max_retries = 3
     backoff_times = [10, 30, 60]
-    
+
+    res = None
     for attempt in range(max_retries + 1):
-        if attempt == 0:
-            time.sleep(1.1)
-            
+        time.sleep(1.1)
+
         res = requests.get(url, params=params, headers=headers)
-        
-        if res.status_code == 429:
-            if attempt < max_retries:
-                retry_after = res.headers.get("Retry-After")
-                if retry_after and retry_after.isdigit():
+
+        if res.ok:
+            break
+
+        if res.status_code in retryable_status_codes and attempt < max_retries:
+            retry_after = res.headers.get("Retry-After")
+            if retry_after:
+                try:
                     wait_time = int(retry_after)
-                else:
+                except ValueError:
                     wait_time = backoff_times[attempt]
-                
-                print(f"HTTP 429 Too Many Requests. Retrying in {wait_time} seconds (attempt {attempt + 1}/{max_retries})...")
-                time.sleep(wait_time)
-                continue
             else:
-                error_msg = "Error: Semantic Scholar API rate limit exceeded after all retries.\nConsider setting the SEMANTIC_SCHOLAR_API_KEY environment variable to increase your rate limits."
-                print(error_msg)
-                os.makedirs("logs", exist_ok=True)
-                with open("logs/semanticscholar_429_error.log", "a") as f:
-                    f.write(f"{datetime.now().isoformat()} - {error_msg}\nURL: {res.url}\n")
-                return
-                
-        res.raise_for_status()
+                wait_time = backoff_times[attempt]
+
+            print(
+                f"HTTP {res.status_code} from Semantic Scholar API. "
+                f"Retrying in {wait_time} seconds (attempt {attempt + 1}/{max_retries})..."
+            )
+            time.sleep(wait_time)
+            continue
+
         break
+
+    if res is None or not res.ok:
+        status_code = res.status_code if res is not None else "unknown"
+        error_msg = (
+            f"Error: Semantic Scholar API request failed after retries "
+            f"(HTTP {status_code}). No output files were written."
+        )
+        print(error_msg)
+
+        body_snippet = ""
+        if res is not None:
+            body_snippet = res.text[:500]
+            if len(res.text) > 500:
+                body_snippet += "..."
+
+        os.makedirs("logs", exist_ok=True)
+        with open("logs/semanticscholar_api_error.log", "a", encoding="utf-8") as f:
+            f.write(
+                f"timestamp: {datetime.now().isoformat()}\n"
+                f"status_code: {status_code}\n"
+                f"query: {args.query}\n"
+                f"url: {res.url if res is not None else url}\n"
+                f"response_body_snippet: {body_snippet}\n"
+                f"---\n"
+            )
+        return
+
     data = res.json()
     
     with open(raw_path, "w", encoding="utf-8") as f:
