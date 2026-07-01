@@ -13,10 +13,10 @@
 当前文件的 exact header 为：
 
 ```csv
-s
+source,title,authors,year,venue,doi,pmid,pmcid,arxiv_id,semantic_scholar_id,url,abstract,search_query,search_topic,retrieved_at,raw_file,initial_relevance,status,notes
 ```
 
-注意：该 header 与本 append plan 需要使用的候选表字段不匹配。实际 append 前需要先由人工确认 `tables/candidate_papers.csv` 的目标 schema，或在单独步骤中修正 header；本文件不执行任何 CSV 修改。
+该候选表的 exact header 字段与本 append plan 计划使用的字段完全一致。本文件不执行任何 CSV 修改。
 
 ## 3. Selection policy
 
@@ -88,7 +88,7 @@ s
 
 - `Brain-wide dynamics linking sensation to action during decision-making` 与其他 decision-making / multi-area dynamics records 是否只是概念相近，还是存在版本/预印本关系。
 - `Inferring stochastic low-rank recurrent neural networks from neural data` 与 held preprint `Inferring brain-wide interactions using data-constrained recurrent neural network models` 是否属于同一 method axis 下的互补 records，而不是重复 records。
-- `candidate_papers.csv` 当前 header 为 `s`，append 前必须确认目标 schema 与本 plan 字段一致。
+- `candidate_papers.csv` 的当前 header 与本 plan 字段完全一致。
 
 ## 8. Exact next action
 
