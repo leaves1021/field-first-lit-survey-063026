@@ -13,37 +13,40 @@ This run focuses strictly on two field axes:
 
 ### Axis 1: population dynamics / neural manifolds
 **PubMed:**
-```bash
-python scripts/search_pubmed.py --query "(\"neural population dynamics\" OR \"population dynamics\") AND (neuroscience OR cortex OR \"neural manifolds\")" --topic "pop_dynamics" --max-results 20
+```powershell
+python .\scripts\search_pubmed.py --query '("neural population dynamics" OR "population dynamics") AND (neuroscience OR cortex OR "neural manifolds")' --topic "pop_dynamics" --max-results 20
 ```
 
 **Semantic Scholar:**
-```bash
-python scripts/search_semantic_scholar.py --query "\"neural population dynamics\" \"neural manifolds\" computation dynamics" --topic "pop_dynamics" --max-results 20
+```powershell
+python .\scripts\search_semantic_scholar.py --query '"neural population dynamics" "neural manifolds" computation dynamics' --topic "pop_dynamics" --max-results 20
 ```
 
 **arXiv:**
-```bash
-python scripts/search_arxiv.py --query "all:\"neural population dynamics\" AND all:\"neural manifolds\"" --topic "pop_dynamics" --max-results 20
+```powershell
+python .\scripts\search_arxiv.py --query 'all:"neural population dynamics" AND all:"neural manifolds"' --topic "pop_dynamics" --max-results 20
 ```
 
 ### Axis 2: brain-wide / distributed computation
 **PubMed:**
-```bash
-python scripts/search_pubmed.py --query "(\"brain-wide\" OR \"whole-brain\" OR \"distributed computation\") AND (neural activity OR neural dynamics OR systems neuroscience)" --topic "brain_wide" --max-results 20
+```powershell
+python .\scripts\search_pubmed.py --query '("brain-wide" OR "whole-brain" OR "distributed computation") AND (neural activity OR neural dynamics OR systems neuroscience)' --topic "brain_wide" --max-results 20
 ```
 
 **Semantic Scholar:**
-```bash
-python scripts/search_semantic_scholar.py --query "\"brain-wide\" \"distributed computation\" neural dynamics" --topic "brain_wide" --max-results 20
+```powershell
+python .\scripts\search_semantic_scholar.py --query '"brain-wide" "distributed computation" neural dynamics' --topic "brain_wide" --max-results 20
 ```
 
 **arXiv:**
 *(Deferred: Use arXiv only for the population dynamics / computational-methods side if appropriate; otherwise mark arXiv as deferred.)*
 
 ## 4. Expected outputs
-- **Raw output filename pattern:** `data/raw/YYYYMMDD_search_<source>_<topic>.[json|csv]`
-- **CSV output filename pattern:** Cleaned and deduplicated candidates will be appended to `tables/candidate_papers.csv` for human screening.
+- **Raw PubMed output:** `data/raw/YYYYMMDD_search_pubmed_<topic>_raw.xml`
+- **Raw Semantic Scholar output:** `data/raw/YYYYMMDD_search_semanticscholar_<topic>_raw.json`
+- **Raw arXiv output:** `data/raw/YYYYMMDD_search_arxiv_<topic>_raw.xml`
+- **Per-search CSV outputs:** each search script writes its own CSV under `tables/YYYYMMDD_search_<source>_<topic>.csv`.
+- **Candidate table:** Run 001 does not append results to `tables/candidate_papers.csv` automatically; `candidate_papers.csv` will be populated later by a separate merge/dedup/screening step.
 - **Expected paper types:** Field-level reviews / perspectives; representative experimental landmarks; theoretical and computational methods.
 
 ## 5. Screening questions
@@ -65,6 +68,7 @@ python scripts/search_semantic_scholar.py --query "\"brain-wide\" \"distributed 
 - Do not modify `search_plan_v1.md`.
 
 ## 8. How to record results
-- Save search metadata in `data/raw/`.
-- Append deduplicated results to `tables/candidate_papers.csv`.
+- Save raw search metadata in `data/raw/YYYYMMDD_search_<source>_<topic>_raw.<json|xml>`.
+- Save per-search CSV outputs in `tables/YYYYMMDD_search_<source>_<topic>.csv`.
+- Do not append to `tables/candidate_papers.csv` automatically in search_run_001; populate it later through a separate merge/dedup/screening step.
 - Record any search execution notes, API issues, or manual decisions in `logs/` (e.g., `logs/search_run_001_log.md`).
