@@ -1,8 +1,8 @@
 # Zotero / references.bib 更新计划 (Run001)
 
-本计划旨在为第一批 `read_first` 的 3 篇文献准备 Zotero 导入与 [references.bib](file:///Z:/Personal_YZP/literature_automation/field_first_lit_survey_063026/references.bib) 的更新规范。此更新有助于确保后续 PDF 关联、文献笔记、证据矩阵和引用的元数据一致性。
+本计划旨在为第一批 `read_first` 的 3 篇文献准备 Zotero 导入与 [references.bib](references.bib) 的更新规范。此更新有助于确保后续 PDF 关联、文献笔记、证据矩阵和引用的元数据一致性。
 
-本计划依据 [tables/candidate_papers.csv](file:///Z:/Personal_YZP/literature_automation/field_first_lit_survey_063026/tables/candidate_papers.csv) 和 [synthesis/candidate_to_confirmed_plan_run001.md](file:///Z:/Personal_YZP/literature_automation/field_first_lit_survey_063026/synthesis/candidate_to_confirmed_plan_run001.md) 中的筛选决策制定。
+本计划依据 [tables/candidate_papers.csv](tables/candidate_papers.csv) 和 [synthesis/candidate_to_confirmed_plan_run001.md](synthesis/candidate_to_confirmed_plan_run001.md) 中的筛选决策制定。
 
 ---
 
@@ -104,7 +104,7 @@
    - *(不分配 `brain_wide` 标签)*
 10. **更新完成后需记录的信息**:
     - **citekey**: (如 `safaie2023PreservedNeuralDynamics`)
-    - **Zotero key**: (Zotero 内部 of 8 位字母数字 ID)
+    - **Zotero key**: (Zotero 内部的 8 位字母数字 ID)
     - **references.bib 是否包含该条目**: (Yes / No)
     - **PDF 是否已关联**: (No) *(根据安全策略，本阶段暂不下载或关联 PDF)*
 
@@ -130,9 +130,11 @@
        - 另外两篇添加 `population_dynamics`。
 4. **同步或刷新 Better BibTeX `references.bib` (Export or Refresh)**：
    - 检查 Better BibTeX 插件是否为条目自动生成了符合规范的 Citekey。
-   - 手动触发 Zotero 的 Better BibTeX 自动导出或更新，确保新添加的 3 篇文献被写入到项目根目录下的 [references.bib](file:///Z:/Personal_YZP/literature_automation/field_first_lit_survey_063026/references.bib) 中。
+   - 手动触发 Zotero 的 Better BibTeX 自动导出或更新，确保新添加的 3 篇文献被写入到项目根目录下的 [references.bib](references.bib) 中。
 5. **PDF 附件控制 (Do Not Attach PDFs Yet)**：
    - **请勿在此阶段关联或下载 PDF 附件**。除非后续获得明确的批量下载与分析指令，否则先保持文献条目的无 PDF 状态。
+   - **安全警告**：使用 Zotero Connector 浏览器插件时，可能会自动下载并附加可公开获取（Open Access）的 PDF。在此步骤中，**推荐优先使用 "Add Item by Identifier" (魔棒图标) 进行导入**。
+   - **处理方法**：如果使用了 Zotero Connector 导致 PDF 被自动附加，请手动在 Zotero 中删除该 PDF 附件，除非 PDF 下载已获得明确的批准。
 
 ---
 
