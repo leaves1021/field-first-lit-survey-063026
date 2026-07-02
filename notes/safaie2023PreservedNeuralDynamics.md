@@ -121,30 +121,19 @@
 - extracted text 的最后几页基本为空，说明正文主体已足够，但若要做 figure-panel 级别精读，还是需要回看 PDF。
 
 # Candidate entries for future `paper_matrix.csv`
-| field | proposed value |
-|---|---|
-| paper | `Preserved neural dynamics across animals performing similar behaviour` |
-| year | `2023` |
-| category | `representative experimental landmark` |
-| field_axis | `population dynamics and neural manifolds; cross-animal conserved dynamics` |
-| species | `monkey; mouse` |
-| brain_area_or_scale | `motor cortex (M1/PMd), dorsolateral striatum` |
-| task_or_behavior | `center-out reaching; sequential reaching; reach/pull joystick; instructed-delay planning` |
-| neural_measurement | `spike-based population recordings` |
-| neural_object | `preserved latent dynamics / neural manifold` |
-| computation | `cross-animal alignment; decoding; control analysis; RNN comparison` |
-| causal_status | `correlational + model-based control` |
-| key_finding_short | `same-behavior latent dynamics are preserved across individuals and extend beyond motor cortex` |
-| modeling_opportunity | `learn constraints that preserve shared latent geometry across individuals` |
-| identifiers | `DOI 10.1038/s41586-023-06714-0; PMID 37938772; PMCID PMC10665198` |
-| uncertainty | `alignment- and manifold-dependent operational definition; no direct perturbation` |
+
+以下为候选条目预案，不实际写入 CSV：
+
+| paper | citekey | year | category | field_axis | species | brain_area_or_scale | task_or_behavior | neural_measurement | neural_object | computation | causal_status | key_finding_short | modeling_opportunity | identifiers | uncertainty | notes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `Preserved neural dynamics across animals performing similar behaviour` | `safaie2023PreservedNeuralDynamics` | `2023` | `representative experimental landmark` | `population dynamics and neural manifolds; cross-animal conserved dynamics` | `monkey; mouse` | `motor cortex (M1/PMd), dorsolateral striatum` | `center-out reaching; sequential reaching; reach/pull joystick; instructed-delay planning` | `spike-based population recordings` | `preserved latent dynamics / neural manifold` | `cross-animal alignment; decoding; control analysis; RNN comparison` | `correlational + model-based control` | `same-behavior latent dynamics are preserved across individuals and extend beyond motor cortex` | `learn constraints that preserve shared latent geometry across individuals` | `DOI 10.1038/s41586-023-06714-0; PMID 37938772; PMCID PMC10665198` | `alignment- and manifold-dependent operational definition; no direct perturbation` | `First full-text note drafted from extracted text; extended-data control panels still need PDF confirmation.` |
 
 # Candidate entries for future `figure_evidence_table.csv`
-| paper | figure_or_table | result_section | claim | evidence_summary | variable_or_neural_object | analysis_method | causal_status | relevance_to_research_question | uncertainty |
-|---|---|---|---|---|---|---|---|---|---|
-| `safaie2023PreservedNeuralDynamics` | `Fig. 1` | `Intro / hypothesis` | same-species animals may instantiate a shared neural landscape | schematic hypothesis only | latent dynamics | conceptual framing | speculative | frames the cross-animal conserved dynamics question | not empirical |
-| `safaie2023PreservedNeuralDynamics` | `Fig. 2` | `Preserved latent dynamics across animals performing the same behaviour` | same-behavior latent dynamics are highly preserved across animals | cross-animal CCs exceed shuffled/TME controls; across-animal decoding works | motor cortical latent dynamics; kinematics | PCA + CCA; LSTM | correlational | central evidence for cross-animal population dynamics | depends on alignment choices |
-| `safaie2023PreservedNeuralDynamics` | `Fig. 3` | `Necessity of behavioural similarity` | preservation persists in complex behavior but drops when behavior is less stereotyped | sequential reaching, condition/neuron subsampling, condition shuffling | motor cortical latent dynamics; condition structure | PCA + CCA; subsampling controls | correlational | links behavioral structure to preserved dynamics | matching strategy still matters |
-| `safaie2023PreservedNeuralDynamics` | `Fig. 4` | `Preserved dynamics in dorsal striatum / covert behaviour` | preserved dynamics extend beyond cortex and into planning | mouse striatum and monkey planning period both align across animals | striatal / preparatory dynamics | PCA + CCA; Bayesian classifier | correlational | broadens the survey axis beyond one area | no direct causality |
-| `safaie2023PreservedNeuralDynamics` | `Fig. 5` | `Behavioural similarity is not sufficient` | similar outputs can arise from distinct latent dynamics | RNNs match behavior while diverging in internal geometry as constraints increase | RNN latent dynamics; recurrent weights | constrained RNN simulation | model-based | gives a mechanistic counterexample for naive behavior-only interpretation | model-to-brain mapping indirect |
-| `safaie2023PreservedNeuralDynamics` | `Extended Data Fig. 2 / 7` | `Controls` | preservation is robust to several control choices | TME, dimensionality, Procrustes, and static topology controls support the main claim | surrogate / aligned dynamics | control analyses | methodological support | strengthens confidence in the main survey claim | some panel mapping requires PDF check |
+| paper | citekey | figure_or_table | result_section | page | claim | evidence_summary | variable_or_neural_object | analysis_method | causal_status | relevance_to_research_question | uncertainty | notes |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Fig. 1` | `Intro / hypothesis` | `1` | same-species animals may instantiate a shared neural landscape | schematic hypothesis only | latent dynamics | conceptual framing | speculative | frames the cross-animal conserved dynamics question | not empirical | `Conceptual framing only; not evidence for a specific claim.` |
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Fig. 2` | `Preserved latent dynamics across animals performing the same behaviour` | `2-3` | same-behavior latent dynamics are highly preserved across animals | cross-animal CCs exceed shuffled/TME controls; across-animal decoding works | motor cortical latent dynamics; kinematics | PCA + CCA; LSTM | correlational | central evidence for cross-animal population dynamics | depends on alignment choices | `Core evidence for preserved dynamics; panel-level details still need PDF confirmation.` |
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Fig. 3` | `Necessity of behavioural similarity` | `4` | preservation persists in complex behavior but drops when behavior is less stereotyped | sequential reaching, condition/neuron subsampling, condition shuffling | motor cortical latent dynamics; condition structure | PCA + CCA; subsampling controls | correlational | links behavioral structure to preserved dynamics | matching strategy still matters | `Behavioural-similarity control; keep separate from the main cross-animal result.` |
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Fig. 4` | `Preserved dynamics in dorsal striatum / covert behaviour` | `4-5` | preserved dynamics extend beyond cortex and into planning | mouse striatum and monkey planning period both align across animals | striatal / preparatory dynamics | PCA + CCA; Bayesian classifier | correlational | broadens the survey axis beyond one area | no direct causality | `Extension to striatum and planning; still correlational.` |
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Fig. 5` | `Behavioural similarity is not sufficient` | `5-6` | similar outputs can arise from distinct latent dynamics | RNNs match behavior while diverging in internal geometry as constraints increase | RNN latent dynamics; recurrent weights | constrained RNN simulation | model-based | gives a mechanistic counterexample for naive behavior-only interpretation | model-to-brain mapping indirect | `Model-based counterexample; do not treat as biological evidence.` |
+| `safaie2023PreservedNeuralDynamics` | `safaie2023PreservedNeuralDynamics` | `Extended Data Fig. 2 / 7` | `Controls` | `14, 18-19` | preservation is robust to several control choices | TME, dimensionality, Procrustes, and static topology controls support the main claim | surrogate / aligned dynamics | control analyses | methodological support | strengthens confidence in the main survey claim | some panel mapping requires PDF check | `Control panels still need PDF inspection before promotion.` |
