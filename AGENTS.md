@@ -111,6 +111,18 @@ Default workflow:
 4. Prefer local scripts and transparent outputs over opaque automated workflows.
 5. Log major automated searches or extraction runs in `logs/`.
 
+## Python environment and validation commands
+
+1. Prefer the project-local virtual environment under `.venv`.
+2. On this project, prefer `.\.venv\Scripts\python.exe` over `py`, bare `python`, or other launcher-based commands when running scripts or validators from Windows PowerShell.
+3. Prefer validation commands in this form:
+
+   ```powershell
+   & .\.venv\Scripts\python.exe .\scripts\<script>.py
+   ```
+
+4. If a launcher-based command such as `py` or bare `python` fails in the sandbox, retry with the project-local virtual environment interpreter before assuming the script itself is broken.
+
 ## Interaction style
 
 When reporting progress:
