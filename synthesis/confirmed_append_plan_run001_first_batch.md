@@ -1,14 +1,14 @@
 # Confirmed Papers 追加计划 (Run001 First Batch)
 
-本文件提出了将第一批 3 篇 `read_first` 文献安全追加至 [tables/confirmed_papers.csv](tables/confirmed_papers.csv) 的执行计划。目前仅作为计划方案归档，**在获得明确的批准指令前暂不改写任何 CSV 文件**。
+本文件提出了将第一批 3 篇 `read_first` 文献安全追加至 `tables/confirmed_papers.csv` 的执行计划。目前仅作为计划方案归档，**在获得明确的批准指令前暂不改写任何 CSV 文件**。
 
-本计划依据 [tables/candidate_papers.csv](tables/candidate_papers.csv)、[synthesis/candidate_to_confirmed_plan_run001.md](candidate_to_confirmed_plan_run001.md)、[synthesis/zotero_references_update_results_run001.md](zotero_references_update_results_run001.md) 以及最近完成的 [synthesis/zotero_references_pdf_attachment_check_run001.md](zotero_references_pdf_attachment_check_run001.md) 制定。
+本计划依据 `tables/candidate_papers.csv`、`synthesis/candidate_to_confirmed_plan_run001.md`、`synthesis/zotero_references_update_results_run001.md` 以及最近完成的 `synthesis/zotero_references_pdf_attachment_check_run001.md` 制定。
 
 ---
 
 ## 1. confirmed_papers.csv 标题与字段顺序
 
-经读取 [tables/confirmed_papers.csv](tables/confirmed_papers.csv)，其精确的表头字段顺序如下：
+经读取 `tables/confirmed_papers.csv`，其精确的表头字段顺序如下：
 
 ```csv
 citekey,title,authors,year,venue,doi,pmid,pmcid,arxiv_id,semantic_scholar_id,zotero_key,zotero_collection,pdf_path,extracted_text_path,status,confirmed_by,confirmed_at,notes
@@ -34,7 +34,7 @@ safaie2023PreservedNeuralDynamics,"Preserved neural dynamics across animals perf
 我们为上述 3 篇文献的 `status` 字段统一指定了 **`ready_for_pdf_download`** 状态，理由如下：
 * **元数据完全对齐**：这 3 篇文献已完成多渠道元数据对齐与校验，处于 `candidate_metadata_verified` 状态。
 * **Zotero 条目及 Citekey 准备就绪**：文献在 Zotero 中的条目已成功导入，对应的 Better BibTeX citekey 和 Zotero Key 已提取并核对。
-* **附件安全性已被证明**：通过 [synthesis/zotero_references_pdf_attachment_check_run001.md](zotero_references_pdf_attachment_check_run001.md) 确认，导出的 `references.bib` 中已不含任何本地 PDF 的 `file` 字段。
+* **附件安全性已被证明**：通过 `synthesis/zotero_references_pdf_attachment_check_run001.md` 确认，导出的 `references.bib` 中已不含任何本地 PDF 的 `file` 字段。
 * **代表下一步最明确的行动**：将状态设置为 `ready_for_pdf_download` 可以明确指示流程当前的断点，即元数据整合完毕，允许并等待下一阶段的安全 PDF 下载和文本提取，比宽泛的 `confirmed_metadata_only` 更具有操作导向性。
 
 ---
@@ -43,10 +43,10 @@ safaie2023PreservedNeuralDynamics,"Preserved neural dynamics across animals perf
 
 在正式执行 CSV 追加修改前，必须手动或通过脚本核验以下条件是否全部满足：
 
-1. **表头一致性**：确认修改后的 [tables/confirmed_papers.csv](tables/confirmed_papers.csv) 的首行表头字段顺序与原文件完全一致，没有列数增减或列名修改。
-2. **Citekey 唯一性**：确认拟添加的 3 个 citekey（`khilkevich2024BrainwideDynamicsLinking` 等）未在 [tables/confirmed_papers.csv](tables/confirmed_papers.csv) 既有条目中重复出现。
-3. **DOI 唯一性**：确认拟添加 of 3 个 DOI 未与已确认文献中的任何 DOI 冲突。
-4. **Candidate 状态校验**：确认这 3 篇文献在 [tables/candidate_papers.csv](tables/candidate_papers.csv) 中对应的 status 均为 `candidate_metadata_verified`。
+1. **表头一致性**：确认修改后的 `tables/confirmed_papers.csv` 的首行表头字段顺序与原文件完全一致，没有列数增减或列名修改。
+2. **Citekey 唯一性**：确认拟添加的 3 个 citekey（`khilkevich2024BrainwideDynamicsLinking` 等）未在 `tables/confirmed_papers.csv` 既有条目中重复出现。
+3. **DOI 唯一性**：确认拟添加的 3 个 DOI 未与已确认文献中的任何 DOI 冲突。
+4. **Candidate 状态校验**：确认这 3 篇文献在 `tables/candidate_papers.csv` 中对应的 status 均为 `candidate_metadata_verified`。
 5. **BibTeX 引用键匹配**：确认本地 `references.bib` 中存在这 3 个 citekey。
 6. **附件清理校验**：确认 `references.bib` 的这 3 个条目下确实不含有任何包含 PDF 本地路径的 `file` 字段。
 
