@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Read-only validator for literature-workflow Markdown notes."""
 
+import argparse
 from pathlib import Path
 import re
 import sys
@@ -27,6 +28,7 @@ REQUIRED_SECTIONS = [
 
 PAPER_MATRIX_SECTION = "# Candidate entries for future `paper_matrix.csv`"
 FIGURE_EVIDENCE_SECTION = "# Candidate entries for future `figure_evidence_table.csv`"
+NEW_SCHEMA_MIN_HEADING_MATCHES = 8
 
 PAPER_MATRIX_HEADER = (
     "| paper | citekey | year | category | field_axis | species | "
@@ -116,6 +118,20 @@ def validate_required_sections(path: Path, text: str) -> list[str]:
         if find_heading_line(lines, heading) is None:
             errors.append(format_issue(path, None, f"missing required section {heading!r}"))
     return errors
+
+
+def classify_note(text: str) -> str:
+    lines = text.splitlines()
+    headings = {line.strip() for line in lines if TOP_LEVEL_HEADING_RE.match(line)}
+
+    if PAPER_MATRIX_SECTION in headings or FIGURE_EVIDENCE_SECTION in headings:
+        return "new_schema_note"
+
+    matched_headings = sum(1 for heading in REQUIRED_SECTIONS if heading in headings)
+    if matched_headings >= NEW_SCHEMA_MIN_HEADING_MATCHES:
+        return "new_schema_note"
+
+    return "legacy_note"
 
 
 def validate_candidate_headers(path: Path, text: str) -> list[str]:
@@ -216,16 +232,43 @@ def print_section(title: str, lines: list[str]) -> None:
         print(f"- {line}")
 
 
+def parse_args(argv: list[str]) -> argparse.Namespace:
+    parser = argparse.ArgumentParser(
+        description="Validate literature-workflow Markdown note structure."
+    )
+    parser.add_argument(
+        "--strict-all",
+        action="store_true",
+        help="Validate every note against the full new note schema.",
+    )
+    return parser.parse_args(argv)
+
+
 def main() -> int:
+    args = parse_args(sys.argv[1:])
     notes = iter_notes()
     errors: list[str] = []
     warnings: list[str] = []
+    new_schema_notes: list[str] = []
+    legacy_notes: list[str] = []
 
     for path in notes:
         try:
             text = read_text(path)
         except OSError as exc:
             errors.append(format_issue(path, None, f"could not read note: {exc}"))
+            continue
+
+        note_type = classify_note(text)
+        if note_type == "new_schema_note":
+            new_schema_notes.append(relative_path(path))
+        else:
+            legacy_notes.append(relative_path(path))
+
+        if note_type == "legacy_note" and not args.strict_all:
+            warnings.append(
+                format_issue(path, None, "legacy note skipped from strict schema validation")
+            )
             continue
 
         errors.extend(validate_required_sections(path, text))
@@ -236,6 +279,8 @@ def main() -> int:
     print(f"Notes scanned: {len(notes)}")
     for path in notes:
         print(f"- {relative_path(path)}")
+    print_section("New-schema notes checked", new_schema_notes)
+    print_section("Legacy notes skipped", [] if args.strict_all else legacy_notes)
     print_section("Errors", errors)
     print_section("Warnings", warnings)
 
