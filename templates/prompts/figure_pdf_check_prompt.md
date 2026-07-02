@@ -18,6 +18,10 @@ Use:
 
 This is a results-recording step for manual PDF inspection. Use extracted text and notes as candidate-claim sources, but do not treat extracted text alone as visual confirmation.
 
+Language and terminology:
+- Use Simplified Chinese for explanations.
+- Keep technical filenames, field names, code identifiers, commands, and standard technical terms in English.
+
 ## Do Not
 
 - Do not modify notes.
@@ -117,6 +121,7 @@ Keep final wording concise and promotion-safe. Do not treat this step as the app
 ## Future Append Boundary
 
 This results file does not update `figure_evidence_table.csv`.
+Do not draft append rows or modify `figure_evidence_table.csv` in this step.
 
 A separate `figure_evidence_table_append_plan` must be created after user approval. The append step should use only claims that are clearly marked `ready_for_figure_evidence_table`.
 
@@ -138,5 +143,7 @@ py -3 scripts\validate_notes.py
 py -3 scripts\validate_tables.py
 py -3 scripts\check_no_leaked_paths.py
 ```
+
+If `py -3` is unavailable in the current environment, use the project virtual environment Python interpreter if available. Do not install packages or modify files just to make validators run.
 
 Do not modify any files based on validator output unless explicitly requested in a later step.

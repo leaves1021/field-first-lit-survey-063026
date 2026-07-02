@@ -20,6 +20,10 @@ Use:
 
 The prior note schema reference is only for formatting and section style. Do not use it as scientific evidence for this paper.
 
+Language and terminology:
+- Use Simplified Chinese for explanations.
+- Keep technical filenames, field names, code identifiers, commands, and standard technical terms in English.
+
 ## Do Not
 
 - Do not create notes other than `{output_note_path}`.
@@ -112,5 +116,7 @@ py -3 scripts\validate_notes.py
 py -3 scripts\validate_tables.py
 py -3 scripts\check_no_leaked_paths.py
 ```
+
+If `py -3` is unavailable in the current environment, use the project virtual environment Python interpreter if available. Do not install packages or modify files just to make validators run.
 
 Do not modify any files based on validator output unless explicitly asked in a later step.

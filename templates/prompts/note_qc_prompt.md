@@ -18,6 +18,10 @@ Use:
 
 Existing Run001 notes may be used only as schema and formatting examples. Do not use them as scientific evidence for the current batch unless they are explicitly included in `{note_paths}`.
 
+Language and terminology:
+- Use Simplified Chinese for explanations.
+- Keep technical filenames, field names, code identifiers, commands, and standard technical terms in English.
+
 ## Do Not
 
 - Do not modify notes.
@@ -98,6 +102,8 @@ For each note, assign one or more readiness labels as appropriate:
 - `figure_evidence_not_ready`
 - `hold`
 
+Default to conservative readiness labels when evidence anchors, table headers, or PDF-inspection status are uncertain.
+
 Use these labels conservatively. A note can be structurally complete but still require PDF inspection before figure-level promotion.
 
 ## Manual PDF Inspection Needs
@@ -155,5 +161,7 @@ py -3 scripts\validate_notes.py
 py -3 scripts\validate_tables.py
 py -3 scripts\check_no_leaked_paths.py
 ```
+
+If `py -3` is unavailable in the current environment, use the project virtual environment Python interpreter if available. Do not install packages or modify files just to make validators run.
 
 Do not modify any files based on validator output unless explicitly requested in a later step.
