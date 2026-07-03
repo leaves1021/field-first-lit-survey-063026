@@ -155,7 +155,7 @@ In `# Final recommendation`, explain:
 - which excluded claims need a later revision or methods-check pass
 - that a separate later step is still required to append approved rows into `figure_evidence_table.csv`
 
-## After Creating The Template
+## After Creating The Append-Plan Document
 
 Run these read-only validators and report stdout / stderr summaries:
 
