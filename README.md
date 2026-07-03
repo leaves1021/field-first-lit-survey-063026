@@ -6,22 +6,15 @@
 
 这个项目不是 fully automated literature review。自动化主要负责 metadata 整理、schema validation、重复检查、prompt template 复用和安全检查；paper selection、full-text note acceptance、figure-level evidence promotion 和最终 synthesis 判断仍需要人工批准。
 
-## Current status
+## Current entry points
 
-Run001 first batch 已完成。当前 curated table 状态：
+Run001 first batch 已完成，并已单独文档化。README 不是 batch status report；详细 batch 状态、row counts 和未完成的 figure-level items 维护在 `synthesis/` 文档中，而不是固定写在 landing page 里。
 
-- `tables/candidate_papers.csv`: 8 data rows
-- `tables/confirmed_papers.csv`: 5 data rows
-- `tables/paper_matrix.csv`: 5 data rows
-- `tables/figure_evidence_table.csv`: 13 data rows
+当前建议优先查看：
 
-三篇 Run001 first-batch papers 已进入 `matrix_ready`：
-
-- `khilkevich2024BrainwideDynamicsLinking`
-- `michaels2016NeuralPopulationDynamics`
-- `safaie2023PreservedNeuralDynamics`
-
-剩余 figure-level items 记录在 `synthesis/figure_evidence_followup_plan_run001.md`，尚未自动进入 `figure_evidence_table.csv`。
+- `synthesis/run001_first_batch_completion_summary.md`
+- `synthesis/figure_evidence_followup_plan_run001.md`
+- `synthesis/project_usability_cleanup_plan.md`
 
 ## Repository structure
 
@@ -108,19 +101,19 @@ Windows PowerShell 推荐使用项目本地 virtual environment：
 
 ## Key current files
 
-- `synthesis/project_usability_cleanup_plan.md`: 当前 usability / cleanup 路线图。
-- `synthesis/run001_first_batch_completion_summary.md`: Run001 first batch 完成状态。
-- `synthesis/figure_evidence_followup_plan_run001.md`: 未追加的 Run001 figure-level items 后续计划。
-- `synthesis/workflow_automation_plan.md`: 后续 validators、prompt templates 和 batch workflow 自动化规划。
+- `synthesis/run001_first_batch_completion_summary.md`: example completed batch summary and current Run001 record。
+- `synthesis/figure_evidence_followup_plan_run001.md`: Run001 remaining figure-level follow-up items。
+- `synthesis/workflow_automation_plan.md`: automation and workflow design notes。
+- `synthesis/project_usability_cleanup_plan.md`: usability, docs, cleanup, and Run002 gating plan。
 
-## Next steps
+## Development roadmap
 
-建议按以下顺序推进：
+建议按项目基础设施建设顺序推进：
 
 1. 创建 `docs/status_vocabulary.md`。
 2. 创建 `docs/workflow_quickstart.md`。
 3. 创建 `docs/file_retention_policy.md`。
 4. 创建 local ignored files inventory。
-5. 后续将 research context 从 `AGENTS.md` 拆分到独立文档。
+5. 将 research context 从 `AGENTS.md` 拆分到独立文档。
 6. 创建 `configs/run_template.yml`。
-7. 再决定优先处理 Run001 leftovers，还是启动 Run002 作为 workflow reuse test。
+7. 然后再决定优先处理 Run001 leftovers，还是启动 Run002。
