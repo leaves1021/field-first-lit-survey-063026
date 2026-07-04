@@ -6,6 +6,13 @@
 
 本计划只描述 proposed move，不执行任何 archive action。本步骤不移动、不删除、不重命名、不压缩任何文件，也不启动 Run002。
 
+## Execution status
+
+- archive move executed
+- `24` files moved to `synthesis/archive/run001/`
+- no files deleted
+- local ignored files not touched
+
 ## Files to keep at synthesis/ top level
 
 以下文件应保留在 `synthesis/` 顶层，作为当前入口、active follow-up、workflow design 或 cleanup review 文件：

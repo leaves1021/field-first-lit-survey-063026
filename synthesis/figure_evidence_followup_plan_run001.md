@@ -4,8 +4,8 @@
 - this follow-up plan covers only the remaining Run001 figure-level items that were not appended to `tables/figure_evidence_table.csv`
 - source status references:
   - `synthesis/run001_first_batch_completion_summary.md`
-  - `synthesis/figure_evidence_pdf_check_results_run001.md`
-  - `synthesis/figure_evidence_table_append_plan_run001_first_batch.md`
+  - `synthesis/archive/run001/figure_evidence_pdf_check_results_run001.md`
+  - `synthesis/archive/run001/figure_evidence_table_append_plan_run001_first_batch.md`
 - covered items:
   - later revision pass:
     - `khilkevich2024BrainwideDynamicsLinking` - `Fig. 3`

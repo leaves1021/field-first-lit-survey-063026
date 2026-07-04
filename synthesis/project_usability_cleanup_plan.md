@@ -178,27 +178,27 @@ Core current-state docs：
 
 Run001 audit trail：
 
-- `synthesis/search_run_001.md`
-- `synthesis/search_run_001_review.md`
-- `synthesis/search_run_001_candidate_selection.md`
-- `synthesis/candidate_append_plan_run001.md`
-- `synthesis/candidate_metadata_enrichment_run001.md`
-- `synthesis/candidate_metadata_enrichment_plan_confirm_first.md`
-- `synthesis/candidate_metadata_verification_results_confirm_first.md`
-- `synthesis/candidate_s2_retry_results_confirm_first.md`
-- `synthesis/candidate_metadata_verification_plan_verify_later.md`
-- `synthesis/candidate_metadata_verification_results_verify_later.md`
-- `synthesis/candidate_to_confirmed_plan_run001.md`
-- `synthesis/confirmed_append_plan_run001_first_batch.md`
-- `synthesis/first_pdf_download_plan_run001.md`
-- `synthesis/pdf_download_extraction_results_run001.md`
-- `synthesis/first_batch_reading_note_plan_run001.md`
-- `synthesis/first_batch_note_qc_run001.md`
-- `synthesis/paper_matrix_append_plan_run001_first_batch.md`
-- `synthesis/figure_evidence_pdf_check_plan_run001.md`
-- `synthesis/figure_evidence_pdf_check_results_run001.md`
-- `synthesis/figure_evidence_table_append_plan_run001_first_batch.md`
-- `synthesis/confirmed_status_update_plan_run001_first_batch.md`
+- `synthesis/archive/run001/search_run_001.md`
+- `synthesis/archive/run001/search_run_001_review.md`
+- `synthesis/archive/run001/search_run_001_candidate_selection.md`
+- `synthesis/archive/run001/candidate_append_plan_run001.md`
+- `synthesis/archive/run001/candidate_metadata_enrichment_run001.md`
+- `synthesis/archive/run001/candidate_metadata_enrichment_plan_confirm_first.md`
+- `synthesis/archive/run001/candidate_metadata_verification_results_confirm_first.md`
+- `synthesis/archive/run001/candidate_s2_retry_results_confirm_first.md`
+- `synthesis/archive/run001/candidate_metadata_verification_plan_verify_later.md`
+- `synthesis/archive/run001/candidate_metadata_verification_results_verify_later.md`
+- `synthesis/archive/run001/candidate_to_confirmed_plan_run001.md`
+- `synthesis/archive/run001/confirmed_append_plan_run001_first_batch.md`
+- `synthesis/archive/run001/first_pdf_download_plan_run001.md`
+- `synthesis/archive/run001/pdf_download_extraction_results_run001.md`
+- `synthesis/archive/run001/first_batch_reading_note_plan_run001.md`
+- `synthesis/archive/run001/first_batch_note_qc_run001.md`
+- `synthesis/archive/run001/paper_matrix_append_plan_run001_first_batch.md`
+- `synthesis/archive/run001/figure_evidence_pdf_check_plan_run001.md`
+- `synthesis/archive/run001/figure_evidence_pdf_check_results_run001.md`
+- `synthesis/archive/run001/figure_evidence_table_append_plan_run001_first_batch.md`
+- `synthesis/archive/run001/confirmed_status_update_plan_run001_first_batch.md`
 
 Prompt / workflow design docs：
 

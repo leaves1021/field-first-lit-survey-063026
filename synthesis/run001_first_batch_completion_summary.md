@@ -6,7 +6,7 @@
   - `michaels2016NeuralPopulationDynamics`
   - `safaie2023PreservedNeuralDynamics`
 - source search run:
-  - `synthesis/search_run_001.md`
+  - `synthesis/archive/run001/search_run_001.md`
 
 # Final table state
 
