@@ -56,7 +56,7 @@ Windows PowerShell 环境下建议使用项目本地的 virtual environment（`.
 4. **Candidate selection** — 从检索结果中初步挑选 candidate 论文并标记 status（参见 `docs/status_vocabulary.md`）。
 5. **Confirmed papers** — 人工审核，验证 stable IDs，将论文加入 `confirmed_papers.csv`。
 6. **PDF / extraction** — 获取 PDF 原文件并使用 `scripts/extract_pdf_text.py` 抽取文本。
-7. **Note generation** — 编写或生成 paper-level notes（模板和 headings 见 `templates/paper_note_template.md` 和 `SKILL.md`）。
+7. **Note generation** — 编写或生成 paper-level notes（headings 格式要求详见 `templates/prompts/paper_note_prompt.md` 与 `.agents/skills/literature-survey/SKILL.md`，并在生成后由 `scripts/validate_notes.py` 进行严格校验）。
 8. **Note QC** — 运行 QC，划分证据类型（生物、模型、方法），保证 causal status 结论保守。
 9. **paper_matrix.csv promotion** — 将审核过的文献基本元数据追加到全局矩阵。
 10. **figure_evidence_table.csv promotion** — 人工比对 PDF 图表细节后，将经过 visual check 的 figure-level evidence 追加到证据表。
@@ -82,4 +82,4 @@ Windows PowerShell 环境下建议使用项目本地的 virtual environment（`.
 - 任何包含 API keys、Zotero 本地绝对路径、个人邮箱等隐私信息的配置文件或环境变量（`.env`）
 - 各种本地运行产生的 raw data（`data/raw/`）与 logs（`logs/`）
 
-在清理本地忽略文件前，务必仔细比对 `synthesis/archive/` 下的历史 inventory，避免误删正在编辑的本地未同步资源。
+在进行本地忽略文件的日常管理与清理时，请参阅 `docs/file_retention_policy.md`，并配合当前本地的 cleanup plan 与 ignored files inventory 谨慎操作，避免误删未同步的本地临时成果。
