@@ -4,10 +4,16 @@ This directory contains standalone, portable Python scripts for performing repro
 
 ## Required Python Packages
 
-Before running the scripts, ensure you have the following packages installed:
+Before running the scripts, ensure you have the following packages installed in the project virtual environment:
 
-```bash
-pip install requests pandas feedparser
+```powershell
+& .\.venv\Scripts\python.exe -m pip install requests pandas feedparser
+```
+
+Or install from `requirements.txt`:
+
+```powershell
+& .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 ```
 
 ## Configuration & Environment Variables
@@ -35,29 +41,45 @@ To prevent accidental data loss, the scripts **will not overwrite existing files
 
 ### 1. PubMed Search
 
-```bash
-python scripts/search_pubmed.py --query "prefrontal cortex working memory" --topic "pfc_wm" --max-results 50
+```powershell
+& .\.venv\Scripts\python.exe .\scripts\search_pubmed.py --query "prefrontal cortex working memory" --topic "pfc_wm" --max-results 50
 ```
 
 ### 2. Semantic Scholar Search
 
-```bash
-python scripts/search_semantic_scholar.py --query "low rank rnn" --topic "lowrank_rnn" --max-results 20
+```powershell
+& .\.venv\Scripts\python.exe .\scripts\search_semantic_scholar.py --query "low rank rnn" --topic "lowrank_rnn" --max-results 20
 ```
 
 ### 3. arXiv Search
 
-```bash
-python scripts/search_arxiv.py --query "neural manifold" --topic "manifolds" --max-results 100 --overwrite
+```powershell
+& .\.venv\Scripts\python.exe .\scripts\search_arxiv.py --query "neural manifold" --topic "manifolds" --max-results 100 --overwrite
 ```
 
 ### 4. PDF Text Extraction
 
 Extract text from downloaded PDFs to page-marked Markdown files (requires `pymupdf`):
 
-```bash
-python scripts/extract_pdf_text.py --input-dir papers/raw_pdf/ --output-dir papers/extracted_text
+```powershell
+& .\.venv\Scripts\python.exe .\scripts\extract_pdf_text.py --input-dir papers\raw_pdf\ --output-dir papers\extracted_text
 ```
+
+## Validators
+
+After running search scripts or PDF extraction, run the project validators to check for schema issues, duplicates, and path leaks:
+
+```powershell
+& .\.venv\Scripts\python.exe .\scripts\validate_tables.py
+& .\.venv\Scripts\python.exe .\scripts\validate_notes.py
+& .\.venv\Scripts\python.exe .\scripts\check_no_leaked_paths.py
+```
+
+- `validate_tables.py` — checks CSV headers, required fields, duplicate identifiers, and allowed status values.
+- `validate_notes.py` — checks note section headings, candidate table headers, and evidence safety.
+- `check_no_leaked_paths.py` — scans tracked files for absolute local paths, Zotero storage paths, and API key patterns.
+
+If the project `.venv` is unavailable, stop and report the issue rather than using an unverified interpreter.
 
 ## Rate-Limit Assumptions
 

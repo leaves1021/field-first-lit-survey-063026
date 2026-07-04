@@ -139,11 +139,11 @@ In `# Final recommendation`, explain:
 Run these read-only validators and report stdout / stderr summaries:
 
 ```powershell
-py -3 scripts\validate_notes.py
-py -3 scripts\validate_tables.py
-py -3 scripts\check_no_leaked_paths.py
+& .\.venv\Scripts\python.exe .\scripts\validate_tables.py
+& .\.venv\Scripts\python.exe .\scripts\validate_notes.py
+& .\.venv\Scripts\python.exe .\scripts\check_no_leaked_paths.py
 ```
 
-If `py -3` is unavailable in the current environment, use the project virtual environment Python interpreter if available. Do not install packages or modify files just to make validators run.
+If the project `.venv` is unavailable, stop and report the issue rather than using an unverified interpreter.
 
 Do not modify any files based on validator output unless explicitly requested in a later step.
