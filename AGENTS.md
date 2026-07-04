@@ -1,24 +1,23 @@
 # AGENTS.md
 
+## Authority map
+
+| document | purpose |
+|---|---|
+| `AGENTS.md` | repo-level agent rules (this file) |
+| `docs/workflow_quickstart.md` | detailed batch workflow: stages, inputs, outputs, human gates |
+| `docs/status_vocabulary.md` | authoritative status and label definitions |
+| `docs/file_retention_policy.md` | file retention, archive, and cleanup rules |
+| `templates/*.csv` | CSV schema source of truth |
+| `docs/research_context.md` | current research framing and field axes |
+
+When in doubt about current research scope or field axes, read `docs/research_context.md` before acting.
+
 ## Project purpose
 
-This project builds a reproducible literature-review workflow for a field-first survey in systems neuroscience and computational neuroscience.
+This project builds a reproducible literature-review workflow for a field-first survey in systems neuroscience and computational neuroscience. The goal is to build a structured evidence base that helps evaluate broad research axes, representative experimental papers, candidate research questions, and feasible computational methods.
 
-The immediate goal is not to confirm a predefined PFC / working-memory / subspace direction. The goal is to build a structured evidence base that helps evaluate broad research axes, representative experimental papers, candidate research questions, and feasible computational methods.
-
-## Working principles
-
-1. Do not assume that PFC, working memory, sequence tasks, subspaces, or low-rank RNNs are the center of the project.
-2. Start from field-level axes first:
-   - brain-wide / distributed computation
-   - population dynamics and neural manifolds
-   - flexible behavior and cognitive control
-   - multi-area communication and routing
-   - causal perturbation and model-based intervention
-   - NeuroAI and interpretable trained models
-3. Treat PFC / frontal working-memory studies as a possible case study, not as the default center.
-4. Prefer structured tables over long narrative summaries during early survey stages.
-5. Keep all intermediate outputs reproducible, inspectable, and easy to revise.
+For current research framing, field axes, and topic constraints, see `docs/research_context.md`.
 
 ## Citation and evidence rules
 
@@ -63,7 +62,6 @@ Use the existing project structure:
 3. Use clear filenames:
    - `YYYYMMDD_search_<source>_<topic>.csv`
    - `<first_author>_<year>_<short_title>.md`
-   - `field_axis_matrix.csv`
    - `candidate_papers.csv`
    - `confirmed_papers.csv`
    - `paper_matrix.csv`
@@ -82,25 +80,14 @@ Use the existing project structure:
 
 ## Literature-survey workflow
 
-Default workflow:
+The full workflow is documented in `docs/workflow_quickstart.md`. Default stage sequence:
 
-1. Define the field axis or search scope.
+1. Define the field axis or search scope (see `docs/research_context.md` for current axes).
 2. Search reliable sources such as PubMed, Semantic Scholar, arXiv, Crossref, or Zotero exports.
 3. Save raw metadata before cleaning.
 4. Deduplicate by DOI, PMID, arXiv ID, Semantic Scholar ID, title, and year.
-5. Classify papers into:
-   - field-level review / perspective
-   - representative experimental landmark
-   - theoretical / computational method
-   - case-study paper
-   - optional / borderline
-6. Extract structured fields:
-   - behavior / task
-   - scale: single-area, multi-area, brain-wide, connectomics, whole-brain imaging
-   - neural object: spikes, firing rates, population state, latent state, manifold, subspace, connectivity, oscillation
-   - computation: memory, decision, routing, selection, planning, prediction, control
-   - causal status: correlational, perturbational, closed-loop, model-based
-   - modeling opportunity
+5. Classify papers into: field-level review / perspective, representative experimental landmark, theoretical / computational method, case-study paper, optional / borderline.
+6. Extract structured fields (see `templates/*.csv` for exact schemas).
 7. Produce tables first, then synthesis.
 
 ## Safety and execution
@@ -114,14 +101,16 @@ Default workflow:
 ## Python environment and validation commands
 
 1. Prefer the project-local virtual environment under `.venv`.
-2. On this project, prefer `.\.venv\Scripts\python.exe` over `py`, bare `python`, or other launcher-based commands when running scripts or validators from Windows PowerShell.
+2. On this project, prefer `.\\.venv\\Scripts\\python.exe` over `py`, bare `python`, or other launcher-based commands when running scripts or validators from Windows PowerShell.
 3. Prefer validation commands in this form:
 
    ```powershell
-   & .\.venv\Scripts\python.exe .\scripts\<script>.py
+   & .\.venv\Scripts\python.exe .\scripts\validate_tables.py
+   & .\.venv\Scripts\python.exe .\scripts\validate_notes.py
+   & .\.venv\Scripts\python.exe .\scripts\check_no_leaked_paths.py
    ```
 
-4. If a launcher-based command such as `py` or bare `python` fails in the sandbox, retry with the project-local virtual environment interpreter before assuming the script itself is broken.
+4. If the project `.venv` is unavailable, stop and report the issue rather than using an unverified interpreter.
 
 ## Interaction style
 

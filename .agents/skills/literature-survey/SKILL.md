@@ -9,7 +9,7 @@ description: Use this skill for field-first systems/computational neuroscience l
 
 Use this skill to perform structured, reproducible literature-review work for systems neuroscience and computational neuroscience.
 
-The survey should be field-first: start from broad research axes and evidence structure before narrowing to any specific topic such as PFC, working memory, sequence tasks, subspaces, or low-rank RNNs.
+The survey is field-first: start from broad research axes and evidence structure before narrowing to any specific topic. For the current field axes, topic constraints, and the rationale for the field-first approach, read `docs/research_context.md` before beginning any search or classification task.
 
 ## Core rules
 
