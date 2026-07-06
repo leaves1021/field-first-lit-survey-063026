@@ -4,11 +4,18 @@
 
 本文件是一个针对 `synthesis/` 顶层目录文档整理的 user-reviewable plan。它的目的是在 README 稳定化之后，明确哪些 `synthesis/*.md` 文件应该继续保持活跃（keep active）、哪些应该归档（archive candidate），以及哪些需要用户进行显式决策（needs user decision）。
 
-**本计划仅作为 proposed plan。在此步骤中，不执行任何文件移动、重命名或删除操作。**
+**本计划已执行第一阶段的归档移动。**
+
+## Execution status
+
+- archive move executed
+- 2 files moved to `synthesis/archive/run001/`
+- no files deleted
+- local cleanup files not touched
 
 ## Current top-level synthesis files
 
-当前 `synthesis/` 顶层共有如下 10 个 `.md` 文件，其分类与初步建议如下：
+当前 `synthesis/` 顶层已归档 2 个文件，剩余 8 个 `.md` 文件，其分类与实际状态如下：
 
 | 文件路径 | 状态分类 | 建议与原因简述 |
 |---|---|---|
@@ -20,8 +27,8 @@
 | `synthesis/local_cleanup_action_plan.md` | `needs user decision` | 记录本地 14 项临时测试文件的清理规划，在用户正式批准执行这 14 项删除操作前，应当保持可见。 |
 | `synthesis/local_ignored_files_inventory.md` | `needs user decision` | 作为 `local_cleanup_action_plan.md` 的源清单（source inventory），在本地清理（Phase 5）完成前应当与清理计划保持同步可见，由用户决策其归档时机。 |
 | `synthesis/synthesis_top_level_cleanup_plan.md` | `needs user decision` | 本规划文件本身，作为当前活跃的用户审查方案，在归档移动正式执行并验证前应当留在顶层。 |
-| `synthesis/synthesis_archive_move_plan_run001.md` | `archive candidate` | 该归档方案在之前的步骤中已被执行（标记为 "archive move executed"），已属于历史记录，建议归档。 |
-| `synthesis/prompt_templates_qc.md` | `archive candidate` | 属于对 prompt templates 进行 QC 的历史审计记录，且该 QC 只覆盖了 3/5 的模板（已过时），建议归档。 |
+| `synthesis/synthesis_archive_move_plan_run001.md` | `archived` | 已归档到 `synthesis/archive/run001/synthesis_archive_move_plan_run001.md`。 |
+| `synthesis/prompt_templates_qc.md` | `archived` | 已归档到 `synthesis/archive/run001/prompt_templates_qc.md`。 |
 
 ## Recommended keep-active files
 
@@ -69,8 +76,7 @@
 
 ## Execution boundary
 
-*   **当前步骤不执行任何实际的移动、重命名或删除操作。**
-*   在用户对上述 "User decisions needed" 给出明确指示，且单独发出 "Proceed with archive" 的指令后，方可由 Agent 新建一个 move action 执行移动。
+*   **本步骤已执行上述两项 approved 归档移动。未做任何物理删除。**
 *   在执行任何归档移动后，必须在虚拟环境下运行以下校验程序：
     - `& .\.venv\Scripts\python.exe .\scripts\validate_tables.py`
     - `& .\.venv\Scripts\python.exe .\scripts\validate_notes.py`
