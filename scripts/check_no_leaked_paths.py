@@ -25,6 +25,8 @@ GLOB_PATTERNS = [
     "tables/**/*.csv",
     "logs/**/*.md",
     "data/processed/**/*.csv",
+    "configs/**/*.yml",
+    "configs/**/*.yaml",
 ]
 
 SKIP_PREFIXES = (

@@ -31,6 +31,7 @@
 - `papers/extracted_text/`: 从 PDF 提取出的纯文本（被 `.gitignore` 忽略，不可提交）。
 - `data/`: 原始 API 响应及衍生出的本地生成数据（被 `.gitignore` 忽略，不可提交）。
 - `logs/`: 各种工具运行的本地日志（被 `.gitignore` 忽略，不可提交）。
+- `configs/`: 批次配置模板。`configs/run_template.yml` 是新 batch 的配置起点；复制并修改此文件以创建具体批次配置（须用户审批后才可执行搜索）。
 
 ## Quickstart
 

@@ -192,6 +192,8 @@ human_gates:
     gate: "Approve PDF download sources and local extraction paths."
   - stage: "5_note_generation"
     gate: "Accept each note before treating it as a stable evidence source."
+  - stage: "6_note_qc"
+    gate: "Note QC results must be reviewed and accepted by the project owner before any paper_matrix.csv or figure_evidence_table.csv promotion planning begins."
   - stage: "7_paper_matrix_promotion"
     gate: "Approve paper_matrix.csv append plan before execution."
   - stage: "8_figure_pdf_inspection"
