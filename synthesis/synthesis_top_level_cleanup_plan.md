@@ -18,7 +18,7 @@
 | `synthesis/search_plan_v1.md` | `needs user decision` | 作为 Run001 的检索设计基础已经使用完毕；但其 query plan 部分对 Run002 检索仍有参考价值，建议由用户决定是归档还是保留到 Run002 启动。 |
 | `synthesis/project_usability_cleanup_plan.md` | `needs user decision` | 记录整个项目易用性重构的总体路线图，当前正在执行各 Phase 阶段，建议由用户决定是否在清理彻底完成后再归档。 |
 | `synthesis/local_cleanup_action_plan.md` | `needs user decision` | 记录本地 14 项临时测试文件的清理规划，在用户正式批准执行这 14 项删除操作前，应当保持可见。 |
-| `synthesis/local_ignored_files_inventory.md` | `archive candidate` | 属于清理过程中的中间数据清册，一旦 local cleanup 执行完毕或不再需要追溯，应当归档。 |
+| `synthesis/local_ignored_files_inventory.md` | `needs user decision` | 作为 `local_cleanup_action_plan.md` 的源清单（source inventory），在本地清理（Phase 5）完成前应当与清理计划保持同步可见，由用户决策其归档时机。 |
 | `synthesis/synthesis_archive_move_plan_run001.md` | `archive candidate` | 该归档方案在之前的步骤中已被执行（标记为 "archive move executed"），已属于历史记录，建议归档。 |
 | `synthesis/prompt_templates_qc.md` | `archive candidate` | 属于对 prompt templates 进行 QC 的历史审计记录，且该 QC 只覆盖了 3/5 的模板（已过时），建议归档。 |
 
@@ -36,7 +36,6 @@
 
 1. **`synthesis/synthesis_archive_move_plan_run001.md`**：此文档记录了 Run001 的 24 个文件的归档计划且已被执行。它本身也应该作为 Run001 的一部分进行归档。
 2. **`synthesis/prompt_templates_qc.md`**：虽然是一份审计参考，但它所提出的修改意见均已在 Phase 1 中被采纳并合入模板，其审计使命已完成。
-3. **`synthesis/local_ignored_files_inventory.md`**：本地忽略文件清单在本次重构和清理规划中已起到了清点作用。
 
 ## User decisions needed
 
@@ -52,9 +51,9 @@
    - *归档理由*：可以将其归档，重构指示由用户直接在 Prompt 中发出。
    - *初步建议*：**保留在顶层**，直到所有 Phase 彻底执行完毕并验证通过后再归档。
 
-3. **`synthesis/local_cleanup_action_plan.md` 是否保留？**
-   - *保留理由*：该文件内含 14 个待用户批准删除的本地 smoketest/API-test 文件规划。在用户显式同意并执行这些删除前，该计划必须保持可见以防止误删。
-   - *初步建议*：**保留在顶层**，直到删除操作（Phase 5）被用户批准并执行后再归档。
+3. **`synthesis/local_cleanup_action_plan.md` 与 `synthesis/local_ignored_files_inventory.md` 是否保留？**
+   - *保留理由*：`local_cleanup_action_plan.md` 内含 14 个待用户批准删除的本地 smoketest/API-test 文件规划，而 `local_ignored_files_inventory.md` 是其所依赖的源清单（source inventory）。在用户显式同意并执行这些删除（Phase 5 本地清理）之前，这两个文件应保持相互可见并同步留在顶层，以防止误删或对清理文件失去追溯能力。
+   - *初步建议*：**保留在顶层**，直到删除操作被用户批准并执行（Phase 5 本地清理完成）后再进行归档。
 
 ## Proposed move table
 
@@ -64,7 +63,8 @@
 |---|---|---|---|
 | `synthesis/synthesis_archive_move_plan_run001.md` | `synthesis/archive/run001/synthesis_archive_move_plan_run001.md` | 方案已执行完毕，移入历史归档 | 是 |
 | `synthesis/prompt_templates_qc.md` | `synthesis/archive/run001/prompt_templates_qc.md` | 审计结果已合并到 prompt，文件已过时 | 是 |
-| `synthesis/local_ignored_files_inventory.md` | `synthesis/archive/run001/local_ignored_files_inventory.md` | 历史本地文件盘点记录 | 是 |
+
+*注：`synthesis/local_ignored_files_inventory.md` 仅在 Phase 5 本地清理完成并验证无误后，才作为未来的归档候选文件进行移动。*
 
 ## Execution boundary
 
