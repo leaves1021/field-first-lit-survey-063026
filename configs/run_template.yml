@@ -1,0 +1,272 @@
+# =============================================================================
+# run_template.yml
+# Field-first Literature Survey — Batch Configuration Template
+# =============================================================================
+#
+# PURPOSE
+# -------
+# This file is a TEMPLATE ONLY. It documents the expected structure of a
+# future literature-survey batch configuration and serves as a scaffold for
+# creating concrete per-run configs.
+#
+# WARNINGS
+# --------
+# - Do NOT treat this file as an active run configuration.
+# - Copying this file to a concrete run config (e.g. configs/run002.yml)
+#   requires explicit user approval before any searches are executed.
+# - Searches MUST NOT be executed until a concrete config derived from this
+#   template has been reviewed and approved by the project owner.
+# - Placeholder values below (marked with angle brackets) MUST be replaced
+#   with real decisions before any batch work begins.
+#
+# AUTHORITY
+# ---------
+# - Research framing and field axes: docs/research_context.md
+# - Full 10-stage workflow:           docs/workflow_quickstart.md
+# - Status and label vocabulary:      docs/status_vocabulary.md
+# - File retention and archiving:     docs/file_retention_policy.md
+# - CSV schema source of truth:       templates/*.csv
+# - Note generation schema:           templates/prompts/paper_note_prompt.md
+#                                     .agents/skills/literature-survey/SKILL.md
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# Batch identity
+# -----------------------------------------------------------------------------
+
+batch_id: "<run_id>"
+# Example: "run002"
+
+batch_status: "template_only"
+# Valid values when this becomes a concrete config:
+#   "planned"         — config written, not yet approved
+#   "approved"        — user has explicitly approved this config
+#   "in_progress"     — batch is actively being executed
+#   "complete"        — all stages done; completion summary written
+# Do NOT change this value in the template itself.
+
+batch_created: "<YYYY-MM-DD>"
+batch_owner: "<project_owner_identifier>"
+
+
+# -----------------------------------------------------------------------------
+# Research context
+# -----------------------------------------------------------------------------
+
+research_context_source: "docs/research_context.md"
+# Always read this file before defining scope or selecting papers.
+# Do not embed field axes or topic constraints directly in this config;
+# keep them in research_context.md to allow independent evolution.
+
+prior_batch_summary: "<path to prior batch completion summary if applicable>"
+# Example: "synthesis/run001_first_batch_completion_summary.md"
+# Set to null if this is the first batch.
+
+
+# -----------------------------------------------------------------------------
+# Scope
+# -----------------------------------------------------------------------------
+
+scope:
+  description: "<one-sentence description of what this batch covers>"
+  # Example: "Second search pass covering brain-wide dynamics and multi-area
+  #           communication axes, extending Run001 candidate pool."
+
+  field_axes:
+    # List the field axes from docs/research_context.md that this batch
+    # prioritizes. Do not invent new axes here; update research_context.md
+    # first if the framing has changed.
+    - "<axis_1>"
+    - "<axis_2>"
+    # Full current axes are documented in docs/research_context.md.
+
+  exclusions:
+    # Topics or approaches explicitly out of scope for this batch.
+    # Refer to docs/research_context.md for the standing exclusion list.
+    - "<excluded_topic_or_approach>"
+
+
+# -----------------------------------------------------------------------------
+# Search sources and queries
+# -----------------------------------------------------------------------------
+
+search_sources:
+  # List each database or source that will be queried.
+  # Do NOT execute any search until this config is approved.
+  - source: "<pubmed | semantic_scholar | arxiv | crossref | other>"
+    script: "<scripts/search_pubmed.py | scripts/search_semantic_scholar.py | scripts/search_arxiv.py>"
+    notes: "<any source-specific notes, e.g. API key required>"
+
+search_queries:
+  # For each source, list the queries to be run.
+  # Queries should be derived from the field_axes above.
+  - source: "<pubmed | semantic_scholar | arxiv>"
+    queries:
+      - "<query_string_1>"
+      - "<query_string_2>"
+    date_range: "<YYYY/MM/DD:YYYY/MM/DD | null>"
+    max_results_per_query: <integer>
+
+raw_output_dir: "data/raw/"
+per_search_csv_dir: "tables/"
+# Output filename convention: YYYYMMDD_search_<source>_<topic>.csv
+
+
+# -----------------------------------------------------------------------------
+# Candidate selection
+# -----------------------------------------------------------------------------
+
+candidate_selection:
+  target_table: "tables/candidate_papers.csv"
+  schema_source: "templates/candidate_papers_template.csv"
+
+  selection_criteria:
+    # Describe how to decide which results from search CSVs become candidates.
+    relevance_threshold: "<description of title/abstract level filter>"
+    paper_types_included:
+      - "field-level review / perspective"
+      - "representative experimental landmark"
+      - "theoretical / computational method"
+      - "case-study paper"
+    paper_types_excluded:
+      - "<e.g. preprints without peer review for this batch>"
+
+  deduplication:
+    # Fields used for deduplication before appending to candidate_papers.csv.
+    keys:
+      - doi
+      - pmid
+      - arxiv_id
+      - s2_id
+      - title_year_first_author
+
+  human_gate: "required"
+  # User must approve every candidate append plan before execution.
+
+
+# -----------------------------------------------------------------------------
+# Required tables
+# -----------------------------------------------------------------------------
+
+required_tables:
+  # These four tables are expected to exist and be valid before and after
+  # each stage. Schemas are authoritative in templates/*.csv.
+  - path: "tables/candidate_papers.csv"
+    schema: "templates/candidate_papers_template.csv"
+  - path: "tables/confirmed_papers.csv"
+    schema: "templates/confirmed_papers_template.csv"
+  - path: "tables/paper_matrix.csv"
+    schema: "templates/paper_matrix_template.csv"
+  - path: "tables/figure_evidence_table.csv"
+    schema: "templates/figure_evidence_table_template.csv"
+
+
+# -----------------------------------------------------------------------------
+# Required prompt templates
+# -----------------------------------------------------------------------------
+
+required_prompts:
+  # These prompt templates should be consulted at the relevant stages.
+  note_generation:     "templates/prompts/paper_note_prompt.md"
+  note_qc:             "templates/prompts/note_qc_prompt.md"
+  figure_pdf_check:    "templates/prompts/figure_pdf_check_prompt.md"
+  paper_matrix:        "templates/prompts/paper_matrix_promotion_prompt.md"
+  figure_evidence:     "templates/prompts/figure_evidence_table_promotion_prompt.md"
+
+
+# -----------------------------------------------------------------------------
+# Human gates
+# -----------------------------------------------------------------------------
+
+human_gates:
+  # These decisions MUST be made by the project owner. Agents must not
+  # proceed past any gate automatically.
+  - stage: "1_search"
+    gate: "Approve search scope, queries, and sources before executing any search."
+  - stage: "2_candidate_selection"
+    gate: "Approve every candidate append plan before writing to candidate_papers.csv."
+  - stage: "3_confirmed_papers"
+    gate: "Approve promotion from candidate to confirmed, including metadata verification."
+  - stage: "4_pdf_extraction"
+    gate: "Approve PDF download sources and local extraction paths."
+  - stage: "5_note_generation"
+    gate: "Accept each note before treating it as a stable evidence source."
+  - stage: "7_paper_matrix_promotion"
+    gate: "Approve paper_matrix.csv append plan before execution."
+  - stage: "8_figure_pdf_inspection"
+    gate: "Figure-level visual judgment must be performed by the project owner."
+  - stage: "9_figure_evidence_promotion"
+    gate: "Approve figure_evidence_table.csv append plan before execution."
+  - stage: "10_completion"
+    gate: "Approve status cleanup and completion summary framing."
+
+
+# -----------------------------------------------------------------------------
+# Validation commands
+# -----------------------------------------------------------------------------
+
+validation_commands:
+  # Run these after every stage. All three must pass before proceeding.
+  - "& .\\.venv\\Scripts\\python.exe .\\scripts\\validate_tables.py"
+  - "& .\\.venv\\Scripts\\python.exe .\\scripts\\validate_notes.py"
+  - "& .\\.venv\\Scripts\\python.exe .\\scripts\\check_no_leaked_paths.py"
+
+
+# -----------------------------------------------------------------------------
+# Outputs
+# -----------------------------------------------------------------------------
+
+outputs:
+  synthesis_documents:
+    # Each stage produces one or more synthesis documents under synthesis/.
+    # Do not define specific filenames here; follow the naming conventions
+    # in AGENTS.md (e.g. YYYYMMDD_search_<source>_<topic>.csv).
+    location: "synthesis/"
+    archive_after_batch: "synthesis/archive/<run_id>/"
+
+  tables_updated:
+    - "tables/candidate_papers.csv"
+    - "tables/confirmed_papers.csv"
+    - "tables/paper_matrix.csv"
+    - "tables/figure_evidence_table.csv"
+
+  notes_produced:
+    location: "notes/"
+    naming: "<first_author>_<year>_<short_title>.md"
+
+  completion_summary:
+    location: "synthesis/<run_id>_completion_summary.md"
+
+
+# -----------------------------------------------------------------------------
+# Archive and retention
+# -----------------------------------------------------------------------------
+
+archive_and_retention:
+  # After the batch is complete and verified, intermediate synthesis documents
+  # should be archived. See docs/file_retention_policy.md for full policy.
+  batch_archive_target: "synthesis/archive/<run_id>/"
+  local_generated_files:
+    # The following are .gitignore-d and should NOT be committed.
+    - "data/raw/"
+    - "data/processed/"
+    - "papers/raw_pdf/"
+    - "papers/extracted_text/"
+    - "logs/"
+  local_cleanup_requires_user_approval: true
+
+
+# -----------------------------------------------------------------------------
+# Notes
+# -----------------------------------------------------------------------------
+
+notes:
+  # Free-form notes for the project owner when creating a concrete config.
+  - "Replace all <placeholder> values before submitting for approval."
+  - "Do not change batch_status from 'template_only' in this file."
+  - "Copy this file to configs/<run_id>.yml for a concrete run config."
+  - "Run validators before and after every stage."
+  - "If a stage fails validation, stop and report before proceeding."
+  - "Refer to docs/workflow_quickstart.md for the full 10-stage procedure."
+  - "Refer to docs/research_context.md for current field axes and exclusions."
