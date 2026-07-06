@@ -20,7 +20,7 @@
 | 文件路径 | 状态分类 | 建议与原因简述 |
 |---|---|---|
 | `synthesis/run001_first_batch_completion_summary.md` | `keep active` | 记录 Run001 第一批次的完成状态，属于活跃的阶段性成果记录，应保持在顶层可见。 |
-| `synthesis/figure_evidence_followup_plan_run001.md` | `keep active` | 记录 Run001 剩余图表证据 of 跟进计划，仍有未完成的活跃项，应保持顶层可见。 |
+| `synthesis/figure_evidence_followup_plan_run001.md` | `keep active` | 记录 Run001 剩余图表证据的跟进计划，仍有未完成的活跃项，应保持顶层可见。 |
 | `synthesis/workflow_automation_plan.md` | `keep active` | 属于长期工作流设计与自动化规划参考，并非中间产物，建议保留。 |
 | `synthesis/search_plan_v1.md` | `needs user decision` | 作为 Run001 的检索设计基础已经使用完毕；但其 query plan 部分对 Run002 检索仍有参考价值，建议由用户决定是归档还是保留到 Run002 启动。 |
 | `synthesis/project_usability_cleanup_plan.md` | `needs user decision` | 记录整个项目易用性重构的总体路线图，当前正在执行各 Phase 阶段，建议由用户决定是否在清理彻底完成后再归档。 |
@@ -63,7 +63,7 @@
 
 ## Executed move table
 
-以下为 Phase 3B 中已成功执行归档移动的文件列表（未进行 any 物理删除）：
+以下为 Phase 3B 中已成功执行归档移动的文件列表（未进行任何物理删除）：
 
 | 归档源文件路径 (Source) | 归档目标路径 (Destination) | 归档原因 | 执行状态 |
 |---|---|---|---|
