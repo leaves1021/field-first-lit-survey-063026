@@ -8,7 +8,7 @@
 
 ## Current top-level synthesis files
 
-当前 `synthesis/` 顶层共有如下 9 个 `.md` 文件，其分类与初步建议如下：
+当前 `synthesis/` 顶层共有如下 10 个 `.md` 文件，其分类与初步建议如下：
 
 | 文件路径 | 状态分类 | 建议与原因简述 |
 |---|---|---|
@@ -19,6 +19,7 @@
 | `synthesis/project_usability_cleanup_plan.md` | `needs user decision` | 记录整个项目易用性重构的总体路线图，当前正在执行各 Phase 阶段，建议由用户决定是否在清理彻底完成后再归档。 |
 | `synthesis/local_cleanup_action_plan.md` | `needs user decision` | 记录本地 14 项临时测试文件的清理规划，在用户正式批准执行这 14 项删除操作前，应当保持可见。 |
 | `synthesis/local_ignored_files_inventory.md` | `needs user decision` | 作为 `local_cleanup_action_plan.md` 的源清单（source inventory），在本地清理（Phase 5）完成前应当与清理计划保持同步可见，由用户决策其归档时机。 |
+| `synthesis/synthesis_top_level_cleanup_plan.md` | `needs user decision` | 本规划文件本身，作为当前活跃的用户审查方案，在归档移动正式执行并验证前应当留在顶层。 |
 | `synthesis/synthesis_archive_move_plan_run001.md` | `archive candidate` | 该归档方案在之前的步骤中已被执行（标记为 "archive move executed"），已属于历史记录，建议归档。 |
 | `synthesis/prompt_templates_qc.md` | `archive candidate` | 属于对 prompt templates 进行 QC 的历史审计记录，且该 QC 只覆盖了 3/5 的模板（已过时），建议归档。 |
 
