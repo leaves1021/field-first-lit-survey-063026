@@ -1,3 +1,20 @@
+<!--
+DEPRECATION NOTICE
+==================
+This file (templates/paper_note_template.md) is retained for historical reference only.
+
+Active note generation should use:
+- templates/prompts/paper_note_prompt.md  — the authoritative prompt for paper note generation
+- .agents/skills/literature-survey/SKILL.md  — note heading schema and workflow rules
+- scripts/validate_notes.py  — strict schema validation for generated notes
+
+This old template is NOT used by validate_notes.py and may deviate from the current
+required headings. Do not use it as the primary schema source.
+
+It will be updated or removed by explicit user approval. Until then, treat it as
+a legacy reference document only.
+-->
+
 # Metadata
 - citekey: 
 - title: 

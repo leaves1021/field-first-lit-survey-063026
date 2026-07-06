@@ -1,4 +1,4 @@
-﻿# ============================================================
+# ============================================================
 # .gitignore for field-first-lit-survey-063026
 # Literature-review automation workflow
 # ============================================================
@@ -85,8 +85,12 @@ desktop.ini
 # 4. Zotero / BibTeX / citation exports
 # ------------------------------------------------------------
 
-# Better BibTeX export may contain local Zotero storage paths.
-# Keep it ignored until the export is cleaned or intentionally tracked.
+# references.bib is ignored because local Zotero / Better BibTeX exports may
+# contain absolute local storage paths (e.g. Zotero attachment paths), which
+# would leak machine-specific or private filesystem layout into the repository.
+# Keep it ignored until the export has been manually cleaned of local paths.
+# A cleaned, tracked bibliography (e.g. references_clean.bib) may be added
+# later as a separate, explicitly approved decision.
 references.bib
 
 # Optional cleaned citation export can be tracked if created later:

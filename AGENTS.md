@@ -101,7 +101,7 @@ The full workflow is documented in `docs/workflow_quickstart.md`. Default stage 
 ## Python environment and validation commands
 
 1. Prefer the project-local virtual environment under `.venv`.
-2. On this project, prefer `.\\.venv\\Scripts\\python.exe` over `py`, bare `python`, or other launcher-based commands when running scripts or validators from Windows PowerShell.
+2. On this project, prefer `.\.venv\Scripts\python.exe` over `py`, bare `python`, or other launcher-based commands when running scripts or validators from Windows PowerShell.
 3. Prefer validation commands in this form:
 
    ```powershell
